@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherVerse — Live Weather & Forecast</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="app theme-default">
+    <!-- PAGE 1: Landing -->
+    <section class="page page-hero mainBox1" id="pageStart">
+      <div class="heroInner">
+        <p class="logoMain">WeatherVerse <span class="logoCloud" aria-hidden="true">☁️</span></p>
+        <p class="heroTagline">Your connected dashboard for live conditions, forecasts, and hourly detail.</p>
+        <button class="btn btnHero start" type="button">Start Exploring</button>
+      </div>
+    </section>
+
+    <!-- PAGE 2: Dashboard -->
+    <section class="page page-dash mainBox2 inactive menuPage" id="pageDashboard">
+      <header class="topNav">
+        <span class="logoSmall">WeatherVerse ☁️</span>
+      </header>
+      <div class="dashGrid">
+        <div class="glassCard dashClock">
+          <p id="liveClock">00:00:00</p>
+          <p id="currentDate">Loading date...</p>
+          <p class="seasonLine">Season: <span id="seasonText">—</span></p>
+          <p class="locationLine">Location: <span id="dashLocation">Search a city to set</span></p>
+        </div>
+        <p class="dashWelcome">Welcome back — pick where to go next.</p>
+        <div class="navCards">
+          <button type="button" class="dashCard" id="navWeather">
+            <span class="dashCardIcon">🌡️</span>
+            <span class="dashCardTitle">Current Weather</span>
+            <span class="dashCardHint">Live conditions & details</span>
+          </button>
+          <button type="button" class="dashCard" id="navForecast">
+            <span class="dashCardIcon">📅</span>
+            <span class="dashCardTitle">Extended Forecast</span>
+            <span class="dashCardHint">5-day outlook + hourly</span>
+          </button>
+          <button type="button" class="dashCard" id="navAbout">
+            <span class="dashCardIcon">ℹ️</span>
+            <span class="dashCardTitle">About WeatherVerse</span>
+            <span class="dashCardHint">What this app does</span>
+          </button>
+        </div>
+        <div class="recentBlock glassCard">
+          <p class="recentTitle">Recent searches</p>
+          <ul class="recentList" id="recentList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: Current Weather -->
+    <section class="page page-weather mainBox3 inactive weatherPage" id="pageWeather">
+      <header class="topNav topNavSplit">
+        <button type="button" class="textBtn" id="weatherBack">← Dashboard</button>
+        <span class="logoSmall">WeatherVerse</span>
+        <button type="button" class="textBtn" id="tempUnitBtn">Switch to °F</button>
+      </header>
+      <p class="seasonLine seasonLineCompact">Season: <span id="weatherSeason">—</span></p>
+      <div class="searchRow">
+        <div class="searchBox">
+          <input type="text" placeholder="Search city..." id="inputfield" />
+          <img src="search.png" id="searchIcon" alt="Search" />
+        </div>
+      </div>
+      <div class="weatherHero">
+        <div class="iconBox">
+          <img src="clear.png" id="icon" alt="Weather icon" />
+          <p id="desc">Search a city to see weather</p>
+        </div>
+        <div class="tempBox">
+          <h1 id="temp">--°</h1>
+          <h2 id="city">City name</h2>
+        </div>
+      </div>
+      <div class="statsGrid" id="statsGrid">
+        <div class="statTile">
+          <span class="statLabel">Feels like</span>
+          <span class="statValue" id="feelsLike">—</span>
+        </div>
+        <div class="statTile">
+          <span class="statLabel">Humidity</span>
+          <span class="statValue" id="humidityper">—</span>
+        </div>
+        <div class="statTile">
+          <span class="statLabel">Wind</span>
+          <span class="statValue" id="windSpeed">—</span>
+        </div>
+        <div class="statTile">
+          <span class="statLabel">Pressure</span>
+          <span class="statValue" id="pressureVal">—</span>
+        </div>
+        <div class="statTile">
+          <span class="statLabel">Cloud cover</span>
+          <span class="statValue" id="cloudCover">—</span>
+        </div>
+        <div class="statTile">
+          <span class="statLabel">Visibility</span>
+          <span class="statValue" id="visibilityVal">—</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: Forecast -->
+    <section class="page page-forecast mainBox4 inactive forecastPage" id="pageForecast">
+      <header class="topNav topNavSplit">
+        <button type="button" class="textBtn" id="forecastBack">← Dashboard</button>
+        <span class="logoSmall">WeatherVerse</span>
+        <button type="button" class="textBtn" id="tempUnitBtnForecast">Switch to °F</button>
+      </header>
+      <h2 class="pageTitle">5-Day Forecast</h2>
+      <p class="forecastCityLabel" id="forecastCity">City</p>
+      <div class="forecastList" id="forecastList"></div>
+    </section>
+
+    <!-- PAGE 5: About -->
+    <section class="page page-about mainBox6 inactive" id="pageAbout">
+      <header class="topNav">
+        <button type="button" class="textBtn" id="aboutBack">← Dashboard</button>
+      </header>
+      <div class="aboutInner glassCard">
+        <h2 class="aboutTitle">About WeatherVerse ☁️</h2>
+        <p class="aboutText">
+          WeatherVerse is a front-end weather dashboard built with HTML, CSS, and JavaScript. It uses the
+          OpenWeatherMap API for current conditions and a 5-day / 3-hour forecast. Explore hourly breakdowns by
+          expanding any day on the forecast page.
+        </p>
+        <p class="aboutText">
+          Features include saved recent cities, Celsius / Fahrenheit display, season hints from your device date, and
+          themes that shift with the latest weather condition you viewed.
+        </p>
+      </div>
+    </section>
+
+    <!-- PAGE 6: 404 -->
+    <section class="page page-error mainBox5 inactive" id="pageError">
+      <div class="errorInner">
+        <p class="errorCode">404</p>
+        <p class="errorTitle">We couldn't find that city</p>
+        <p class="info">Check spelling or try another name — then head back to your dashboard.</p>
+        <button class="btn homeBtn" type="button">Return to Dashboard</button>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
